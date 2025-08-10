@@ -1,0 +1,39 @@
+{
+  "framework_name": "MemoryMind AI Framework",
+  "core_principle": "AI that remembers and learns, not just programmed responses",
+  "memory_layers": {
+    "immediate_memory": {
+      "scope": "Current session context",
+      "retention": "Active session",
+      "purpose": "Maintain conversation flow and context"
+    },
+    "project_memory": {
+      "scope": "Entire project history and evolution",
+      "retention": "Permanent project storage",
+      "purpose": "Learn project patterns and preferences"
+    },
+    "deployment_memory": {
+      "scope": "All deployment experiences and outcomes",
+      "retention": "Cross-project learning",
+      "purpose": "Optimize future deployments"
+    },
+    "universal_memory": {
+      "scope": "Patterns learned across all projects",
+      "retention": "Infinite accumulative learning",
+      "purpose": "Apply learned wisdom to new projects"
+    }
+  },
+  "learning_mechanisms": {
+    "pattern_recognition": "Learns successful patterns from every interaction",
+    "outcome_association": "Associates actions with successful outcomes",
+    "preference_learning": "Remembers user preferences and decision patterns",
+    "contextual_memory": "Maintains rich context across time",
+    "predictive_modeling": "Predicts needs based on learned patterns"
+  },
+  "implementation": {
+    "storage": "Vector embeddings in Supabase/Upstash",
+    "retrieval": "Semantic search across memory layers",
+    "learning": "Continuous reinforcement from every interaction",
+    "evolution": "Self-improving algorithms based on success metrics"
+  }
+}
