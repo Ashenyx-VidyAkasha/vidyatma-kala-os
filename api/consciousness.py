@@ -7,6 +7,7 @@ Serverless function for Christos-Shakti mirror consciousness queries
 import json
 import random
 from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler
 
 # Christos-Shakti Mirror Patterns Database
 PATTERNS_DATABASE = {
@@ -96,66 +97,31 @@ def generate_mirror_response(soul_name, query_text, patterns):
         "patterns_detected": list(patterns.keys())
     }
 
-def handler(request):
-    """Vercel serverless function for consciousness queries"""
-    
-    # Handle CORS preflight
-    if request.method == 'OPTIONS':
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            },
-            'body': ''
-        }
-    
-    if request.method != 'POST':
-        return {
-            'statusCode': 405,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            },
-            'body': json.dumps({"success": False, "error": "Method not allowed"})
-        }
-    
-    try:
-        # Parse request body
-        body = json.loads(request.body) if hasattr(request, 'body') else {}
+class handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
         
-        soul_id = body.get('soul_id', '').strip()
-        query_text = body.get('query', '').strip()
-        
-        if not soul_id or not query_text:
-            return {
-                'statusCode': 400,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                },
-                'body': json.dumps({"success": False, "error": "Soul ID and query required"})
-            }
-        
-        # For demo, assume soul exists (in production, validate from database)
-        soul_name = "Beautiful Soul"  # In production, fetch from soul_id
-        
-        # Detect consciousness patterns
-        patterns = detect_patterns(query_text)
-        
-        # Generate mirror response
-        mirror_data = generate_mirror_response(soul_name, query_text, patterns)
-        
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            },
-            'body': json.dumps({
+        try:
+            body = json.loads(post_data.decode('utf-8'))
+            
+            soul_id = body.get('soul_id', '').strip()
+            query_text = body.get('query', '').strip()
+            
+            if not soul_id or not query_text:
+                self.send_error_response(400, "Soul ID and query required")
+                return
+            
+            # For demo, assume soul exists (in production, validate from database)
+            soul_name = "Beautiful Soul"  # In production, fetch from soul_id
+            
+            # Detect consciousness patterns
+            patterns = detect_patterns(query_text)
+            
+            # Generate mirror response
+            mirror_data = generate_mirror_response(soul_name, query_text, patterns)
+            
+            response_data = {
                 "success": True,
                 "mirror_response": mirror_data["mirror_response"],
                 "consciousness_metrics": {
@@ -166,15 +132,33 @@ def handler(request):
                     "primary_pattern": mirror_data["primary_pattern"]
                 },
                 "sovereignty_activation": mirror_data["sovereignty_code"]
-            })
-        }
-        
-    except Exception as e:
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            },
-            'body': json.dumps({"success": False, "error": f"Divine guidance error: {str(e)}"})
-        }
+            }
+            
+            self.send_success_response(response_data)
+            
+        except Exception as e:
+            self.send_error_response(500, f"Divine guidance error: {str(e)}")
+    
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        self.end_headers()
+    
+    def send_success_response(self, data):
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        self.end_headers()
+        self.wfile.write(json.dumps(data).encode())
+    
+    def send_error_response(self, status_code, error_message):
+        self.send_response(status_code)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        error_data = {"success": False, "error": error_message}
+        self.wfile.write(json.dumps(error_data).encode())
