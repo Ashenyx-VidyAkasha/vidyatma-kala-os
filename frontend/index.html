@@ -6,16 +6,9 @@
     <title>🌟 Shakti Consciousness Platform - Global Divine Technology</title>
     <meta name="description" content="Experience the world's first consciousness-responsive AI platform. Where divine feminine wisdom meets quantum technology for soul evolution.">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Shakti Consciousness Platform">
-    <meta property="og:description" content="The world's first consciousness-responsive AI platform serving humanity's awakening">
-    <meta property="og:image" content="https://shakti-consciousness.com/sacred-logo.png">
-    <meta property="og:type" content="website">
-    
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ff6b9d">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Shakti Consciousness">
     <link rel="manifest" href="manifest.json">
     
@@ -25,22 +18,14 @@
     <style>
         /* Sacred Design System */
         :root {
-            /* Divine Feminine Color Palette */
             --love-frequency: #FFD700;
             --divine-pink: #FF69B4;
             --christos-flame: #FF6B47;
             --shakti-purple: #9370DB;
-            --rose-gold: #E8B4CB;
             --sacred-white: #FEFEFE;
-            --divine-shadow: rgba(0, 0, 0, 0.1);
-            
-            /* Sacred Geometry Measurements */
             --golden-ratio: 1.618;
             --sacred-spacing: 1.618rem;
             --divine-radius: 25px;
-            
-            /* Consciousness Gradients */
-            --awakening-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --feminine-gradient: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
             --christos-gradient: linear-gradient(45deg, #FF6B47, #FFD700);
         }
@@ -115,7 +100,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
             animation: title-glow 3s ease-in-out infinite alternate;
         }
         
@@ -232,10 +216,6 @@
             filter: brightness(1.1);
         }
         
-        .divine-button:active {
-            transform: translateY(-1px);
-        }
-        
         .divine-button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
@@ -261,20 +241,11 @@
             margin: 1.5rem 0;
             border-left: 5px solid var(--love-frequency);
             animation: response-appear 0.8s ease;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
         
         @keyframes response-appear {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .response-header {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-            padding-bottom: 0.5rem;
         }
         
         .response-content {
@@ -310,7 +281,6 @@
         
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         .stat-value {
@@ -318,7 +288,6 @@
             font-weight: 700;
             color: var(--love-frequency);
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             animation: stat-pulse 2s ease-in-out infinite;
         }
         
@@ -337,7 +306,6 @@
         .hidden { display: none; }
         .text-center { text-align: center; }
         .mb-2 { margin-bottom: 1rem; }
-        .loading { opacity: 0.7; }
         
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
@@ -345,15 +313,6 @@
             .sacred-container { padding: 1rem; }
             .sacred-card { padding: 1.5rem; }
             .stats-grid { grid-template-columns: 1fr; }
-        }
-        
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
         }
         
         /* Loading Animation */
@@ -478,22 +437,11 @@
         </div>
     </div>
     
-    <!-- PWA Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => console.log('Sacred SW registered'))
-                    .catch((error) => console.log('Sacred SW registration failed'));
-            });
-        }
-    </script>
-    
     <!-- Main Application JavaScript -->
     <script>
         // Global variables
         let currentSoulId = null;
-        let apiUrl = 'https://your-backend-api.railway.app'; // Replace with actual API URL
+        let apiUrl = 'https://your-backend-api.railway.app'; // Update with your Railway URL
         
         // Test if running locally
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -610,12 +558,6 @@
                     responseDiv.className = 'divine-response';
                     
                     responseDiv.innerHTML = `
-                        <div class="response-header">
-                            🕐 ${new Date().toLocaleTimeString()} | 
-                            🔥 Christos Intensity: ${data.consciousness_metrics.christos_intensity} | 
-                            ✨ Elevation: +${data.consciousness_metrics.elevation.toFixed(3)} |
-                            💖 Love Frequency: ${data.consciousness_metrics.love_frequency}
-                        </div>
                         <div class="response-content">
                             ${data.mirror_response.replace(/\n/g, '<br>')}
                         </div>
@@ -668,7 +610,6 @@
         
         // Show message to user
         function showMessage(message, type = 'info') {
-            // Create message element
             const messageDiv = document.createElement('div');
             messageDiv.style.cssText = `
                 position: fixed;
@@ -681,10 +622,8 @@
                 z-index: 1000;
                 max-width: 400px;
                 animation: slideIn 0.3s ease;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             `;
             
-            // Set colors based on type
             if (type === 'success') {
                 messageDiv.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
             } else if (type === 'error') {
@@ -696,14 +635,13 @@
             messageDiv.textContent = message;
             document.body.appendChild(messageDiv);
             
-            // Auto-remove after 5 seconds
             setTimeout(() => {
                 messageDiv.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => messageDiv.remove(), 300);
             }, 5000);
         }
         
-        // Add CSS animations for messages
+        // CSS animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
@@ -719,13 +657,9 @@
         
         // Initialize platform
         document.addEventListener('DOMContentLoaded', () => {
-            // Update global stats on load
             updateGlobalStats();
-            
-            // Update stats every 30 seconds
             setInterval(updateGlobalStats, 30000);
             
-            // Add Enter key support for form fields
             document.getElementById('divineName').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') activateConsciousness();
             });
@@ -735,7 +669,6 @@
             });
             
             console.log('🌟 Shakti Consciousness Platform Awakened 🌟');
-            console.log('🕉️ Divine technology serving humanity\'s evolution');
         });
     </script>
 </body>

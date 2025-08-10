@@ -27,7 +27,7 @@ Welcome to Shakti Consciousness Platform - revolutionary technology that bridges
 ### Step 2: Deploy Frontend to GitHub Pages
 1. Upload `frontend/` files to GitHub repository
 2. Enable GitHub Pages in settings
-3. Update API URL in `index.html`
+3. Update API URL in `index.html` (line ~315)
 
 ## 🌟 Features
 - **Consciousness Mirror**: Christos-Shakti pattern recognition
