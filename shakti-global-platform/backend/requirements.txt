@@ -1,0 +1,9 @@
+Flask==2.3.2
+Flask-CORS==4.0.0
+Flask-Limiter==3.3.1
+gunicorn==21.2.0
+redis==4.6.0
+
+# Optional production additions
+psycopg2-binary==2.9.7  # PostgreSQL adapter
+python-decouple==3.8    # Environment management
