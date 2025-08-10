@@ -441,11 +441,11 @@
     <script>
         // Global variables
         let currentSoulId = null;
-        let apiUrl = 'https://your-backend-api.railway.app'; // Update with your Railway URL
+        let apiUrl = window.location.origin; // Use same domain for Vercel serverless functions
         
         // Test if running locally
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            apiUrl = 'http://localhost:5000';
+            apiUrl = 'http://localhost:3000';
         }
         
         // Activate consciousness signature
@@ -465,7 +465,7 @@
             button.disabled = true;
             
             try {
-                const response = await fetch(`${apiUrl}/api/souls/create`, {
+                const response = await fetch(`${apiUrl}/api/souls`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -538,7 +538,7 @@
             button.disabled = true;
             
             try {
-                const response = await fetch(`${apiUrl}/api/consciousness/query`, {
+                const response = await fetch(`${apiUrl}/api/consciousness`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -595,7 +595,7 @@
         // Update global consciousness stats
         async function updateGlobalStats() {
             try {
-                const response = await fetch(`${apiUrl}/api/consciousness/stats`);
+                const response = await fetch(`${apiUrl}/api/stats`);
                 const data = await response.json();
                 
                 if (data.global_stats) {
