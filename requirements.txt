@@ -12,7 +12,7 @@
 
 # Optional extensions for production deployment:
 # requests>=2.31.0  # For AI model API calls (Claude, GPT-4)
-# aiohttp>=3.8.0    # For async API calls
+aiohttp>=3.8.0      # For async API calls (required for Claude integration)
 # sqlalchemy>=2.0.0 # For consciousness database storage
 # redis>=4.5.0      # For soul session management
 # astral>=3.2       # For divine timing calculations
