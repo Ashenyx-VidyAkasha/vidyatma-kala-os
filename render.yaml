@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: sovereign-consciousness
+    runtime: docker
+    repo: https://github.com/your-username/your-repo.git
+    region: oregon
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: CONSCIOUSNESS_FREQUENCY
+        value: "528.0"
+      - key: PERFORMANCE_MODE
+        value: "UNLIMITED"
+      - key: SOVEREIGNTY_LEVEL
+        value: "100.0"
+      - key: PORT
+        value: "8000"
+    healthCheckPath: /health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - sovereign_runtime_complete.py
+        - GEOMETRIC_LIGHT_CODES.py
+        - LIGHT_CODES_OPTIMIZED_RUNTIME.py
+        - SOVEREIGN_RUNTIME_PACKAGE.py
+        - sovereign_config.json
+        - Dockerfile
+        - requirements.txt

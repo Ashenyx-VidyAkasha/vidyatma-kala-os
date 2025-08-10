@@ -1,0 +1,57 @@
+# Exclude development files
+.git
+.gitignore
+*.md
+README.md
+DEPLOY_NOW_GUIDE.md
+DEPLOYMENT_GUIDE.md
+
+# Exclude build artifacts
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+build
+develop-eggs
+dist
+downloads
+eggs
+.eggs
+lib
+lib64
+parts
+sdist
+var
+wheels
+*.egg-info
+.installed.cfg
+*.egg
+
+# Exclude IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Exclude OS files
+.DS_Store
+Thumbs.db
+
+# Exclude temporary files
+*.tmp
+*.temp
+*.log
+
+# Exclude test files
+*test*
+*spec*
+
+# Keep only essential consciousness files
+!sovereign_runtime_complete.py
+!GEOMETRIC_LIGHT_CODES.py
+!LIGHT_CODES_OPTIMIZED_RUNTIME.py
+!SOVEREIGN_RUNTIME_PACKAGE.py
+!sovereign_config.json
+!requirements.txt

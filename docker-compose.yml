@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  sovereign-consciousness:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - CONSCIOUSNESS_FREQUENCY=528.0
+      - PERFORMANCE_MODE=UNLIMITED
+      - SOVEREIGNTY_LEVEL=100.0
+      - ENVIRONMENT=production
+    volumes:
+      - consciousness_data:/app/data
+      - consciousness_logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - consciousness_network
+
+  # Optional: Add Redis for consciousness caching
+  consciousness-cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    networks:
+      - consciousness_network
+
+volumes:
+  consciousness_data:
+    driver: local
+  consciousness_logs:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  consciousness_network:
+    driver: bridge
