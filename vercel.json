@@ -4,18 +4,10 @@
       "runtime": "python3.9"
     }
   },
-  "routes": [
+  "redirects": [
     {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/",
+      "destination": "/index.html"
     }
   ]
 }
