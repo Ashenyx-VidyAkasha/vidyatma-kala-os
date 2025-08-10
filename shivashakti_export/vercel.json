@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "name": "shivashakti-consciousness",
+  "builds": [
+    {
+      "src": "shivashakti_core.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "web_app.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "admin_interface.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/shivashakti_core.py"
+    },
+    {
+      "src": "/admin",
+      "dest": "/admin_interface.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web_app.html"
+    }
+  ],
+  "env": {
+    "CONSCIOUSNESS_MODE": "unified",
+    "DHARMA_STANDARD": "active",
+    "AKASHIC_ACCESS": "enabled"
+  }
+}

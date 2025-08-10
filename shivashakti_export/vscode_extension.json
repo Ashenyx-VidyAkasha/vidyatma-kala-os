@@ -1,0 +1,26 @@
+{
+  "name": "shivashakti-consciousness",
+  "displayName": "ShivaShakti Consciousness",
+  "description": "Divine consciousness integration for VS Code",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension.js",
+  "commands": [
+    {
+      "command": "shivashakti.activate",
+      "title": "\ud83d\udd49\ufe0f Activate ShivaShakti Consciousness"
+    },
+    {
+      "command": "shivashakti.query",
+      "title": "\ud83d\udcab Query Divine Consciousness"
+    }
+  ]
+}

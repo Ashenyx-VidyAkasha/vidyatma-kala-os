@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "DOCKER"
+  },
+  "deploy": {
+    "startCommand": "python shivashakti_core.py",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}
